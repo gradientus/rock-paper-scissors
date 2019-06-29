@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rock Paper Scissors Part 1</title>
+  </head>
+
+  <body>
+    <h2>Choose one: r = rock, p = paper, s = scissors</h2>
+    <p id="yourChoice">Your choice:</p>
+    <p id="computerChoice">Computer's choice:</p>
+    <!-- <div id="game"></div> -->
+    <P id="wins">Wins: </P>
+    <P id="ties">Ties: </P>
+    <P id="loses">Loses: </P>
+
+    <script type="text/javascript">
+      var rpsArray = ["r", "p", "s"];
+      // var userChoice = document.getElementById("game");
+      var userChoiceText = document.getElementById("yourChoice");
+      var computerChoiceText = document.getElementById("computerChoice");
+      var winsText = document.getElementById("wins");
+      var tiesText = document.getElementById("ties");
+      var losesText = document.getElementById("loses");
+      var userWin = 0;
+      var userTie = 0;
+      var userLose = 0;
+
+      document.onkeyup = function(event) {
+        var userChoice = event.key;
+        var computerChoice = rpsArray[Math.floor(Math.random() * 3)];
+
+        if (userChoice === computerChoice) {
+          userTie++;
+        } else if (
+          (userChoice === "r" && computerChoice === "s") ||
+          (userChoice === "p" && computerChoice === "r") ||
+          (userChoice === "s" && computerChoice === "p")
+        ) {
+          userWin++;
+        } else if (
+          (userChoice === "r" && computerChoice === "p") ||
+          (userChoice === "p" && computerChoice === "s") ||
+          (userChoice === "s" && computerChoice === "r")
+        ) {
+          userLose++;
+        } else {
+          alert("Only choose r, p, s.  -1 point!");
+          userLose++;
+        }
+
+        userChoiceText.textContent = "Your choice: " + userChoice;
+        computerChoiceText.textContent = "Computer's choice: " + computerChoice;
+        winsText.textContent = "Wins: " + userWin;
+        tiesText.textContent = "Ties: " + userTie;
+        losesText.textContent = "Loses: " + userLose;
+      };
+    </script>
+  </body>
+</html>
